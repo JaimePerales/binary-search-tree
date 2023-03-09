@@ -1,8 +1,13 @@
 import Tree from "./tree";
 
-const newTree = new Tree([2, 7, 4, 5, 1, 3, 8, 6]);
+function createRandomArray(arrayLength = 40, maxValue = 40) {
+    return Array.from({ length: arrayLength }, () => Math.floor(Math.random() * maxValue));
 
-const builtTree = newTree.buildTree();
+}
+createRandomArray();
+const newTree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31])
+
+newTree.root = newTree.buildTree();
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node.rightChild !== null) {
@@ -18,7 +23,19 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
 console.log();
 console.log();
 console.log();
-prettyPrint(builtTree);
+prettyPrint(newTree.root);
+console.log();
+console.log();
+console.log();
+
+newTree.delete(16);
+
+console.log(newTree.find(18));
+
+console.log();
+console.log();
+console.log();
+prettyPrint(newTree.root);
 console.log();
 console.log();
 console.log();
