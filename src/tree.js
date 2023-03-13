@@ -2,6 +2,11 @@
 /* eslint-disable consistent-return */
 import Node from "./node";
 
+function test(node) {
+
+    return node.data;
+}
+
 class Tree {
     constructor(sortedArray) {
         this.root = null;
@@ -69,117 +74,6 @@ class Tree {
 
     }
 
-    // Start with deleteing leaf
-
-    // delete(value, root = this.root) {
-
-    //     if (value === this.root.data) {
-    //         if (this.root.leftChild === null && this.root.rightChild === null) {
-    //             this.root = null;
-    //         } else if (this.root.leftChild === null && this.root.rightChild !== null) {
-    //             this.root = this.root.rightChild;
-    //         } else if (this.root.leftChild !== null && this.root.rightChild === null) {
-    //             this.root = this.root.leftChild;
-    //         } else {
-    //             let lowestValueInRightSubTree = this.root.rightChild;
-    //             while (lowestValueInRightSubTree.leftChild) {
-    //                 lowestValueInRightSubTree = lowestValueInRightSubTree.leftChild;
-    //             }
-
-    //             const temp = new Node(lowestValueInRightSubTree.data);
-    //             temp.leftChild = lowestValueInRightSubTree.leftChild;
-    //             temp.rightChild = lowestValueInRightSubTree.rightChild;
-
-    //             const lowestValueInRightSubTreeParentNode = this.findParentNode(lowestValueInRightSubTree.data);
-    //             lowestValueInRightSubTree.leftChild = this.root.leftChild;
-    //             lowestValueInRightSubTree.rightChild = this.root.rightChild;
-    //             if (lowestValueInRightSubTreeParentNode.leftChild === lowestValueInRightSubTree) {
-    //                 if (temp.rightChild) {
-    //                     lowestValueInRightSubTreeParentNode.leftChild = temp.rightChild
-    //                 } else {
-    //                     lowestValueInRightSubTreeParentNode.leftChild = null;
-    //                 }
-    //                 this.root = lowestValueInRightSubTree
-    //             } else if (lowestValueInRightSubTreeParentNode.rightChild === lowestValueInRightSubTree) {
-    //                 lowestValueInRightSubTreeParentNode.rightChild = null;
-    //                 this.root = lowestValueInRightSubTree
-    //             }
-
-    //         }
-    //         return
-    //     }
-    //     // find node to be deleted and remove its parents reference
-    //     const parentNode = (this.findParentNode(value, root));
-
-    //     if (parentNode === null) {
-    //         return
-    //     }
-
-    //     if (parentNode.leftChild !== null) {
-    //         if (parentNode.leftChild.data === value) {
-    //             if (parentNode.leftChild.leftChild === null && parentNode.leftChild.rightChild === null) {
-    //                 parentNode.leftChild = null;
-
-    //             } else if (parentNode.leftChild.leftChild !== null && parentNode.leftChild.rightChild === null) {
-    //                 parentNode.leftChild = parentNode.leftChild.leftChild;
-    //             } else if (parentNode.leftChild.leftChild === null && parentNode.leftChild.rightChild !== null) {
-    //                 parentNode.leftChild = parentNode.leftChild.rightChild;
-    //             } else {
-    //                 let lowestValueInRightSubTree = parentNode.leftChild.rightChild;
-    //                 while (lowestValueInRightSubTree.leftChild) {
-    //                     lowestValueInRightSubTree = lowestValueInRightSubTree.leftChild;
-    //                 }
-
-    //                 const lowestValueInRightSubTreeParentNode = this.findParentNode(lowestValueInRightSubTree.data);
-
-    //                 lowestValueInRightSubTree.leftChild = parentNode.leftChild.leftChild;
-    //                 lowestValueInRightSubTree.rightChild = parentNode.leftChild.rightChild;
-    //                 if (lowestValueInRightSubTreeParentNode.leftChild === lowestValueInRightSubTree) {
-    //                     // check if lowest value has right child, if it does set the left 
-    //                     lowestValueInRightSubTreeParentNode.leftChild = null;
-    //                     parentNode.leftChild = lowestValueInRightSubTree
-    //                 } else if (lowestValueInRightSubTreeParentNode.rightChild === lowestValueInRightSubTree) {
-    //                     lowestValueInRightSubTreeParentNode.rightChild = null;
-    //                     parentNode.leftChild = lowestValueInRightSubTree
-    //                 }
-    //             }
-
-
-
-    //         }
-    //     }
-    //     if (parentNode.rightChild !== null) {
-    //         if (parentNode.rightChild.data === value) {
-    //             if (parentNode.rightChild.leftChild === null && parentNode.rightChild.rightChild === null) {
-    //                 parentNode.rightChild = null;
-    //             } else if (parentNode.rightChild.leftChild !== null && parentNode.rightChild.rightChild === null) {
-    //                 parentNode.rightChild = parentNode.rightChild.leftChild;
-    //             } else if (parentNode.rightChild.leftChild === null && parentNode.rightChild.rightChild !== null) {
-    //                 parentNode.rightChild = parentNode.rightChild.rightChild;
-    //             } else {
-    //                 let lowestValueInRightSubTree = parentNode.rightChild.rightChild;
-    //                 while (lowestValueInRightSubTree.leftChild) {
-    //                     lowestValueInRightSubTree = lowestValueInRightSubTree.leftChild;
-    //                 }
-    //                 const lowestValueInRightSubTreeParentNode = this.findParentNode(lowestValueInRightSubTree.data);
-    //                 lowestValueInRightSubTree.leftChild = parentNode.rightChild.leftChild;
-    //                 lowestValueInRightSubTree.rightChild = parentNode.rightChild.rightChild;
-    //                 if (lowestValueInRightSubTreeParentNode.leftChild === lowestValueInRightSubTree) {
-    //                     lowestValueInRightSubTreeParentNode.leftChild = null;
-    //                     parentNode.rightChild = lowestValueInRightSubTree
-    //                 } else if (lowestValueInRightSubTreeParentNode.rightChild === lowestValueInRightSubTree) {
-    //                     lowestValueInRightSubTreeParentNode.rightChild = null;
-    //                     parentNode.rightChild = lowestValueInRightSubTree
-    //                 }
-    //             }
-
-
-
-    //         }
-    //     }
-
-
-    // }
 
     delete(value, root = this.root) {
         if (!root) {
@@ -187,33 +81,21 @@ class Tree {
         }
 
         if (value === root.data) {
-            if (!root.leftChild && !root.rightChild) {
-                return null;
-            }
-            if (!root.leftChild) {
-                return root.rightChild;
-            }
-            if (!root.rightChild) {
+            if (!root.leftChild && !root.rightChild) return null;
 
+            if (!root.leftChild) return root.rightChild;
 
-                return root.leftChild;
-            }
+            if (!root.rightChild) return root.leftChild;
+
 
             let temp = root.rightChild;
 
             while (temp.leftChild) {
                 temp = temp.leftChild;
-
             }
 
             root.data = temp.data;
-
-
-
-
             root.rightChild = this.delete(temp.data, root.rightChild);
-
-
         }
         if (value < root.data) {
             root.leftChild = this.delete(value, root.leftChild);
@@ -222,7 +104,6 @@ class Tree {
         if (value > root.data) {
             root.rightChild = this.delete(value, root.rightChild);
             return root;
-
         }
     }
 
@@ -239,6 +120,77 @@ class Tree {
         return node;
     }
 
+
+
+    levelOrder(node = this.root, functionToRun = test) {
+        const resultArray = [];
+        const queue = [node];
+
+        while (queue.length) {
+            const currentNode = queue.shift();
+            if (currentNode) {
+                resultArray.push(functionToRun(currentNode));
+                queue.push(currentNode.leftChild);
+                queue.push(currentNode.rightChild);
+            }
+
+        }
+        return resultArray
+    }
+
+    inOrder(node = this.root, resultArray = [], functionToRun = test) {
+
+        if (node) {
+            if (node.leftChild) {
+                this.inOrder(node.leftChild, resultArray);
+            }
+            resultArray.push(functionToRun(node));
+            if (node.rightChild) {
+                this.inOrder(node.rightChild, resultArray);
+            }
+        }
+        return resultArray;
+
+    }
+
+    preOrder(node = this.root, resultArray = [], functionToRun = test) {
+
+        if (node) {
+            resultArray.push(functionToRun(node));
+
+            if (node.leftChild) {
+                this.preOrder(node.leftChild, resultArray);
+            }
+            if (node.rightChild) {
+                this.preOrder(node.rightChild, resultArray);
+            }
+        }
+        return resultArray;
+
+    }
+
+    postOrder(node = this.root, resultArray = [], functionToRun = test) {
+
+        if (node) {
+
+
+            if (node.leftChild) {
+                this.postOrder(node.leftChild, resultArray);
+            }
+            if (node.rightChild) {
+                this.postOrder(node.rightChild, resultArray);
+            }
+
+            resultArray.push(functionToRun(node));
+        }
+        return resultArray;
+
+    }
+
+
 }
+
+
+
 
 export default Tree

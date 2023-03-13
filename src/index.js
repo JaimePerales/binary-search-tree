@@ -28,14 +28,6 @@ console.log();
 console.log();
 console.log();
 
-newTree.delete(16);
-
-console.log(newTree.find(18));
-
-console.log();
-console.log();
-console.log();
-prettyPrint(newTree.root);
-console.log();
-console.log();
-console.log();
+console.log(newTree.inOrder());
+console.log(newTree.preOrder());
+console.log(newTree.postOrder());
