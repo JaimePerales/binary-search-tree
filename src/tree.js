@@ -158,7 +158,7 @@ class Tree {
         if (node) {
             resultArray.push(functionToRun(node));
 
-            if (node.leftChild) {
+            if (node.leftCh) {
                 this.preOrder(node.leftChild, resultArray);
             }
             if (node.rightChild) {
@@ -185,6 +185,16 @@ class Tree {
         }
         return resultArray;
 
+    }
+
+    height(node = this.root) {
+        if (node === null) {
+            return -1;
+        }
+        const lh = this.height(node.leftChild);
+        const rh = this.height(node.rightChild);
+
+        return lh > rh ? 1 + lh : 1 + rh
     }
 
 
